@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     bool goJump = false; //ジャンプフラグ　(True:真 false: 偽)
     bool onGrand = false; //地面にイルカどうか？
 
-    
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -59,10 +59,10 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         //　地面判定をサークルキャスト
-        onGrand = Physics2D.CircleCast (
+        onGrand = Physics2D.CircleCast(
             transform.position, //発射位置=playerの位置
-            0.2f ,              //Circleの半径
-            new Vector2(0, 1.0f) , //発射方向
+            0.2f,              //Circleの半径
+            new Vector2(0, 1.0f), //発射方向
             0,                  //発射距離
             groundLayer        //対象となるレイヤー情報(変数)
             );
