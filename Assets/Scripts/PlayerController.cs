@@ -3,14 +3,17 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rbody; //PlayerについているRigidBody2Dを扱うための変数
+                       // Transform tr; //本来なら　transform特別
 
-    float axisH ; //入力の方向を記憶するための変数
-    public float speed = 3.0f ; //playerのスピードを調整
+    float axisH; //入力の方向を記憶するための変数
+    public float speed = 3.0f; //playerのスピードを調整
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-     　　rbody = GetComponent<Rigidbody2D>(); //Playerについているコンポーネント情報を取得
+        rbody = GetComponent<Rigidbody2D>(); //Playerについているコンポーネント情報を取得
+        // tr = GetComponent<Transform>();　//本来なら　transform特別
     }
 
     // Update is called once per frame
@@ -18,9 +21,21 @@ public class PlayerController : MonoBehaviour
     {
         //もしも水平方向のキーが押されたら
         //if (Input.GetAxisRaw ("Horizontal") != 0 )
-        
-            //Velocityの元となる値の取得 (右なら1.0f、左なら-1.0f、何もなければ0 )
-            axisH = Input.GetAxisRaw("Horizontal");
+
+        //Velocityの元となる値の取得 (右なら1.0f、左なら-1.0f、何もなければ0 )
+        axisH = Input.GetAxisRaw("Horizontal");
+
+        if (axisH > 0)
+        {
+            //右を向く
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (axisH < 0)
+        {
+            //左を向く
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+
 
     }
 
@@ -28,6 +43,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         //Velocity 代入
-        rbody.linearVelocity = new Vector2(axisH * speed , rbody.linearVelocity.y );
+        rbody.linearVelocity = new Vector2(axisH * speed, rbody.linearVelocity.y);
     }
 }
