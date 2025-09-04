@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -11,12 +12,13 @@ public class PlayerController : MonoBehaviour
 
 
     Rigidbody2D rbody; //PlayerについているRigidBody2Dを扱うための変数
+    Animator animator; //Animator
     // Transform tr; //本来なら　transform特別
 
     float axisH; //入力の方向を記憶するための変数
 
     bool goJump = false; //ジャンプフラグ　(True:真 false: 偽)
-    bool onGrand = false; //地面にイルカどうか？
+    bool onGround = false; //地面にイルカどうか？
 
 
 
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         rbody = GetComponent<Rigidbody2D>(); //Playerについているコンポーネント情報を取得
         // tr = GetComponent<Transform>();　//本来なら　transform特別
+        animator = GetComponent<Animator>();  //
     }
 
     // Update is called once per frame
@@ -59,7 +62,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         //　地面判定をサークルキャスト
-        onGrand = Physics2D.CircleCast(
+        onGround = Physics2D.CircleCast(
             transform.position, //発射位置=playerの位置
             0.2f,              //Circleの半径
             new Vector2(0, 1.0f), //発射方向
@@ -77,15 +80,28 @@ public class PlayerController : MonoBehaviour
             rbody.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
             goJump = false; //FlagをOffに戻す
         }
-    }
 
+
+        if (onGround)
+        {
+            if (axisH == 0)
+            {
+                animator.SetBool("Run", false);
+            }
+            else
+            {
+                animator.SetBool("Run", true);
+            }
+        }
+    }
 
     //ジャンプボタンが押されたら
     void Jump()
     {
-        if (onGrand)
+        if (onGround)
         {
             goJump = true;  //JumpフラグをON
+            animator.SetTrigger("Jump");
         }
     }
 }
