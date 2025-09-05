@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -33,6 +32,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ゲームのステータスがplayingでないなら
+        if (GameManager.gameState != "playing")
+        {
+            return; // その1フレームを強制終了
+        }
+
         //もしも水平方向のキーが押されたら
         //if (Input.GetAxisRaw ("Horizontal") != 0 )
 
@@ -59,8 +64,14 @@ public class PlayerController : MonoBehaviour
     }
 
     //1秒間に50回(50fps)繰り返すように制御しながら行う繰り返しメソッド
-    private void FixedUpdate()
+    void FixedUpdate()
     {
+        //ゲームのステータスがplayingでないなら
+        if (GameManager.gameState != "playing")
+        {
+            return; // その1フレームを強制終了
+        }
+
         //　地面判定をサークルキャスト
         onGround = Physics2D.CircleCast(
             transform.position, //発射位置=playerの位置
@@ -73,7 +84,7 @@ public class PlayerController : MonoBehaviour
         //Velocity 代入
         rbody.linearVelocity = new Vector2(axisH * speed, rbody.linearVelocity.y);
 
-        //ジャンプ
+        //ジャンプフラグが立ったら
         if (goJump)
         {
             //ジャンプさせる
@@ -82,17 +93,17 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (onGround)
-        {
+        //if (onGround)　//地面の上にいるとき
+        //{
             if (axisH == 0)
             {
-                animator.SetBool("Run", false);
+                animator.SetBool("Run", false); //アイドルアニメに切り替え
             }
             else
             {
-                animator.SetBool("Run", true);
+                animator.SetBool("Run", true); //Runアニメに切り替え
             }
-        }
+        //}
     }
 
     //ジャンプボタンが押されたら
@@ -105,7 +116,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //isTrigger特性を持っている
+    //isTrigger特性を持っているColliderとぶつかったら処理
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //if (collision.gameObject.tag == "Goal")
@@ -113,6 +124,21 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.gameState = "gameclear";
             Debug.Log("ゴールに接触した！");
+            Goal();
         }
+    }
+
+    //ゴールした時のメソッド
+    public void Goal()
+    {
+        animator.SetBool("Clear", true); //クリアアニメに切り替え
+        GameStop(); //プレイヤーのVelocityを止めるメソッド
+    }
+
+    void GameStop()
+    {
+        //速度を0にリセット
+        //rbody.linearVelocity = new Vector2(0, 0);
+        rbody.linearVelocity = Vector2.zero;
     }
 }
