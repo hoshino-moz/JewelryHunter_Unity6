@@ -104,4 +104,15 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("Jump");
         }
     }
+
+    //isTrigger“Á«‚ğ‚Á‚Ä‚¢‚é
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //if (collision.gameObject.tag == "Goal")
+        if (collision.gameObject.CompareTag("Goal"))
+        {
+            GameManager.gameState = "gameclear";
+            Debug.Log("ƒS[ƒ‹‚ÉÚG‚µ‚½I");
+        }
+    }
 }
