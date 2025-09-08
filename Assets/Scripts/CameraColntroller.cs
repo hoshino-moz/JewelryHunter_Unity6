@@ -29,44 +29,50 @@ public class CameraColntroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //いったんプレイヤーのx座標、y座標の位置を変数に取得
-        x = player.transform.position.x;
-        y = player.transform.position.y;
+        if (player != null)
+        {
 
-        //X方向の強制スクロール
-        if (isScrollX )
-        {
-            x = transform.position.x + (scrollSpeedX * Time.deltaTime) ;
-        }
+            //いったんプレイヤーのx座標、y座標の位置を変数に取得
+            x = player.transform.position.x;
+            y = player.transform.position.y;
 
-        //左右のスクロールリミット
-        if (x < leftLimit)
-        {
-            x = leftLimit;
-        }
-        else if (x > rightLimit)
-        {
-            x = rightLimit;
-        }
+            //X方向の強制スクロール
+            if (isScrollX)
+            {
+                x = transform.position.x + (scrollSpeedX * Time.deltaTime);
+            }
 
-        //Y方向の強制スクロール
-        if (isScrollY)
-        {
-            y = transform.position.y + (scrollSpeedY * Time.deltaTime) ;
-        }
+            //左右のスクロールリミット
+            if (x < leftLimit)
+            {
+                x = leftLimit;
+            }
+            else if (x > rightLimit)
+            {
+                x = rightLimit;
+            }
 
-        //上下のスクロールリミット
-        if (y < bottomLimit)
-        {
-            y = bottomLimit;
-        }
-        else if (y > topLimit)
-        {
-            y = topLimit;
-        }
+            //Y方向の強制スクロール
+            if (isScrollY)
+            {
+                y = transform.position.y + (scrollSpeedY * Time.deltaTime);
+            }
 
-        //取り決めた各変数の値をカメラのポジションとする
-        transform.position = new Vector3(x, y, z);
+            //上下のスクロールリミット
+            if (y < bottomLimit)
+            {
+                y = bottomLimit;
+            }
+            else if (y > topLimit)
+            {
+                y = topLimit;
+            }
+
+            //取り決めた各変数の値をカメラのポジションとする
+            transform.position = new Vector3(x, y, z);
+
+
+        }
 
     }
 }

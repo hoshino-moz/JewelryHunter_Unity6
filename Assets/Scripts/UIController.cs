@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     public GameObject nextButton;
 
     public Sprite gameClearSprite;
+    public Sprite gameOverSprite;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,6 +33,17 @@ public class UIController : MonoBehaviour
             //リトライボタンオブジェクトのButtonコンポーネントのinterractableを無効化
             retryButton.GetComponent<Button>().interactable = false;
         }
+
+        else if (GameManager.gameState == "gameover")
+        {
+            buttonPanel.SetActive(true); //ボタンパネルの復活
+            mainImage.SetActive(true); //メイン画像の復活
+            //メイン画像オブジェクトの変数spriteにゲームオーバーの画像を代入
+            mainImage.GetComponent<Image>().sprite = gameOverSprite;
+            //ネクストボタンオブジェクトのButtonコンポーネントのinterractableを無効化
+            nextButton.GetComponent<Button>().interactable = false;
+        }
+
     }
 
     //メイン画像を非表示するためだけのメソッド

@@ -120,11 +120,20 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //if (collision.gameObject.tag == "Goal")
+        //ゴールに接触したらGameClear
         if (collision.gameObject.CompareTag("Goal"))
         {
             GameManager.gameState = "gameclear";
             Debug.Log("ゴールに接触した！");
             Goal();
+        }
+
+        //  穴に落ちたら(Dead)　ゲームオーバー
+        if (collision.gameObject.CompareTag("Dead"))
+        {
+            GameManager.gameState = "gameover";
+            Debug.Log("ゲームオーバー！");
+            GameOver();
         }
     }
 
@@ -133,6 +142,21 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetBool("Clear", true); //クリアアニメに切り替え
         GameStop(); //プレイヤーのVelocityを止めるメソッド
+    }
+
+    public void GameOver()
+    {
+        animator.SetBool("Dead", true); //デッドアニメに切り替え
+        GameStop();
+
+        //当たり判定を無効にする
+        GetComponent<CapsuleCollider2D>().enabled = false;
+
+        //少し上に飛び跳ねる
+        rbody.AddForce(new Vector2(0, 5), ForceMode2D.Impulse);
+
+        //プレイヤーを時間差(3秒)で抹消
+        Destroy(gameObject,3.0f);
     }
 
     void GameStop()
