@@ -37,36 +37,43 @@ public class CannonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //待機時間加算
-        passedTime += Time.deltaTime;
-        //Playerとの距離チェック
-        if (CheckLength(player.transform.position))
+        if (player != null)
         {
-            //待機時間経過
-            if (passedTime > delayTime)
+
+            //待機時間加算
+            passedTime += Time.deltaTime;
+            //Playerとの距離チェック
+            if (CheckLength(player.transform.position))
             {
+                //待機時間経過
+                if (passedTime > delayTime)
                 {
-                    passedTime = 0;
-                    //砲弾をプレハブから作る
-                    Vector2 pos = new Vector2(gateTransfome.position.x, gateTransfome.position.y);
-                    GameObject obj = Instantiate(objPrefab, pos, Quaternion.identity);
-                    //砲身が向いているほうに発射する
-                    Rigidbody2D rbody = obj.GetComponent<Rigidbody2D>();
-                    float angleZ = transform.localEulerAngles.z;
-                    float x = Mathf.Cos(angleZ * Mathf.Deg2Rad);
-                    float y = Mathf.Sin(angleZ * Mathf.Deg2Rad);
-                    Vector2 v = new Vector2(x, y) * fireSpeed;
-                    rbody.AddForce(v, ForceMode2D.Impulse);
+                    {
+                        passedTime = 0;
+                        //砲弾をプレハブから作る
+                        Vector2 pos = new Vector2(gateTransfome.position.x, gateTransfome.position.y);
+                        GameObject obj = Instantiate(objPrefab, pos, Quaternion.identity);
+                        //砲身が向いているほうに発射する
+                        Rigidbody2D rbody = obj.GetComponent<Rigidbody2D>();
+                        float angleZ = transform.localEulerAngles.z;
+                        float x = Mathf.Cos(angleZ * Mathf.Deg2Rad);
+                        float y = Mathf.Sin(angleZ * Mathf.Deg2Rad);
+                        Vector2 v = new Vector2(x, y) * fireSpeed;
+                        rbody.AddForce(v, ForceMode2D.Impulse);
 
 
+                    }
                 }
             }
+
         }
 
-        //範囲表示
-        void OnDrawGizmosSelected()
-        {
-            Gizmos.DrawWireSphere(transform.position, length);
-        }
+    }
+
+
+    //範囲表示
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, length);
     }
 }

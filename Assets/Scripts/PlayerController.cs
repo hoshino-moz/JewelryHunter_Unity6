@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //アイテムに触れたらスコア加算
-        if (collision.gameObject.CompareTag("ItemScore"))
+        if (collision.gameObject.CompareTag("ScoreItem"))
         {
             GameManager.stageScore += collision.gameObject.GetComponent<ItemData>().value;
             Destroy(collision.gameObject);
