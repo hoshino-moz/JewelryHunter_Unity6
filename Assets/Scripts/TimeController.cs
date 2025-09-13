@@ -55,7 +55,7 @@ public class TimeController : MonoBehaviour
                 {
                     displayTime = 0; //•\‹L‚ð0‚É‚·‚é
                     isTimeOver = true ;
-                    GameManager.gameState = "gameover";
+                    //GameManager.gameState = "gameover";
                 }
             }
             else
@@ -65,11 +65,11 @@ public class TimeController : MonoBehaviour
                 {
                     displayTime = gameTime ;
                     isTimeOver = true ;
-                    GameManager.gameState = "gameover";
+                    //GameManager.gameState = "gameover";
                 }
             }
 
-            Debug.Log(displayTime);
+            //Debug.Log(displayTime);
         }
     }
 }

@@ -19,14 +19,18 @@ public class PlayerController : MonoBehaviour
     bool goJump = false; //ジャンプフラグ　(True:真 false: 偽)
     bool onGround = false; //地面にイルカどうか？
 
-
+    AudioSource audio;
+    public AudioClip se_Jump;
+    public AudioClip se_ItemGet;
+    public AudioClip se_Damage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rbody = GetComponent<Rigidbody2D>(); //Playerについているコンポーネント情報を取得
         // tr = GetComponent<Transform>();　//本来なら　transform特別
-        animator = GetComponent<Animator>();  //
+        animator = GetComponent<Animator>();  //Animatorコンポーネントの取得
+        audio = GetComponent<AudioSource>();  //audio の初期化　忘れずに
     }
 
     // Update is called once per frame
@@ -111,6 +115,8 @@ public class PlayerController : MonoBehaviour
     {
         if (onGround)
         {
+            audio.PlayOneShot(se_Jump); //SEを鳴らす
+            
             goJump = true;  //JumpフラグをON
             animator.SetTrigger("Jump");
         }
@@ -131,6 +137,9 @@ public class PlayerController : MonoBehaviour
         //  穴に落ちたら(Dead)　ゲームオーバー
         if (collision.gameObject.CompareTag("Dead"))
         {
+
+            audio.PlayOneShot(se_Damage);
+
             GameManager.gameState = "gameover";
             Debug.Log("ゲームオーバー！");
             GameOver();
@@ -139,6 +148,7 @@ public class PlayerController : MonoBehaviour
         //アイテムに触れたらスコア加算
         if (collision.gameObject.CompareTag("ScoreItem"))
         {
+            audio.PlayOneShot(se_ItemGet);
             GameManager.stageScore += collision.gameObject.GetComponent<ItemData>().value;
             Destroy(collision.gameObject);
         }
