@@ -15,7 +15,7 @@ MonoBehaviour:
   m_PixelRect:
     serializedVersion: 2
     x: 21.6
-    y: 88
+    y: 80.8
     width: 1502.4
     height: 888
   m_ShowMode: 4
@@ -167,8 +167,8 @@ MonoBehaviour:
     y: 0
     width: 867.2
     height: 552
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -352,8 +352,8 @@ MonoBehaviour:
     y: 0
     width: 307.20007
     height: 832
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 76}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 23}
   m_Panes:
   - {fileID: 23}
@@ -398,7 +398,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_MixersTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 50b30000
+    m_SelectedIDs: 
     m_LastClickedID: 45904
     m_ExpandedIDs: 12eb343c
     m_RenameOverlay:
@@ -639,7 +639,7 @@ MonoBehaviour:
       height: 614.4
     m_MinimalGUI: 1
   m_defaultScale: 0.37923175
-  m_LastWindowPixelSize: {x: 499.75, y: 317.5}
+  m_LastWindowPixelSize: {x: 399.8, y: 254}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 00000000000000000000
@@ -1620,7 +1620,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: ccb90000
     m_LastClickedID: 47564
-    m_ExpandedIDs: 00000000d0b7000000ca9a3b
+    m_ExpandedIDs: 00000000ceb70000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1649,7 +1649,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d0b70000
+    m_ExpandedIDs: 00000000ceb70000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
