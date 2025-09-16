@@ -19,7 +19,7 @@ Playerのアニメ切り替えには各クリップをトランジションで�
 ## Itemのコーディングの効率化
 Itemは列挙型のItemColorを自作して、ItemColor型の変数次第で何色かを指定する
   
-  ![トランジションの絵](readmeImage/jewelryhunter-code.jpg)
+  ![トランジションの絵](readmeImage/jewelryHunter-code.jpg)
 
 ```c#
 using UnityEngine;
