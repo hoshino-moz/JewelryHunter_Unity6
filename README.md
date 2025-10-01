@@ -2,7 +2,7 @@
   
 [ゲームのサンプルプレイ](https://hoshino-moz.github.io/JewelryHunter_Web/)
 
-![ゲーム画面](readmeImage/jewelryhunter-img.jpg)
+![ゲーム画面](readmeImage/jewelryhant01.png)
 
 ## 訓練校で学習する初2D作品
 * playerの動作
