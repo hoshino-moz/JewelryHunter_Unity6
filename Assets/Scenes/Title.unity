@@ -1054,7 +1054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b9813565a1c474a899ecbf471dd54a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Stage1
+  sceneName: BaseScene
   toTitle: 0
 --- !u!114 &1730009482
 MonoBehaviour:
